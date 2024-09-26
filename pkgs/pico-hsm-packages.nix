@@ -56,10 +56,10 @@ let
           "-DPICO_BOARD=${picoBoard}"
         ]
         ++ lib.optional (usbVid != null) [
-          "-DUSB_VID=${picoBoard}"
+          "-DUSB_VID=${usbVid}"
         ]
         ++ lib.optional (usbPid != null) [
-          "-DUSB_PID=${picoBoard}"
+          "-DUSB_PID=${usbPid}"
         ];
 
       installPhase = ''
