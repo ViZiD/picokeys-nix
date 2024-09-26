@@ -13,8 +13,6 @@ lib.makeScope newScope (self: {
   pico-openpgp = self.callPackage ./pico-openpgp.nix { };
 
   pico-hsm-packages = self.callPackage ./pico-hsm-packages.nix { };
-  pico-hsm = self.callPackage (self.pico-hsm-packages.pico-hsm) {
-    picoBoard = "pimoroni_plasma2040";
-  };
+  pico-hsm = self.callPackage (self.pico-hsm-packages.pico-hsm) { };
   pico-hsm-tool = self.callPackage (self.pico-hsm-packages.pico-hsm-tool) { };
 })
