@@ -1,4 +1,4 @@
-Flake for build Pico HSM/OpenPGP frimware
+Flake for build Pico HSM/OpenPGP firmware
 https://github.com/polhenarejos/pico-openpgp
 https://github.com/polhenarejos/pico-hsm
 
