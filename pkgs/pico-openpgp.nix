@@ -11,6 +11,7 @@
   picoBoard ? null,
   usbVid ? null,
   usbPid ? null,
+  vidPid ? null,
 }:
 
 stdenv.mkDerivation rec {
@@ -53,12 +54,19 @@ stdenv.mkDerivation rec {
     ]
     ++ lib.optional (usbPid != null) [
       "-DUSB_PID=${usbPid}"
-    ];
+    ]
+    ++ lib.optional (vidPid != null) [ "-DVIDPID=${vidPid}" ];
 
   installPhase = ''
+    ${lib.optionalString (picoBoard != null)
+      "mv pico_openpgp.uf2 pico_openpgp_${
+        lib.optionalString (vidPid != null) "${vidPid}-"
+      }${picoBoard}-${version}.uf2"
+    }
     ${lib.optionalString (
-      picoBoard != null
-    ) "mv pico_openpgp.uf2 pico_openpgp_${picoBoard}-${version}.uf2"}
+      vidPid != null && picoBoard == null
+    ) "mv pico_openpgp.uf2 pico_openpgp_${vidPid}-${version}.uf2"}
+
     mkdir -p $out
     cp -r *.uf2 $out
   '';
