@@ -1,5 +1,5 @@
 {
-  description = "Flake for build Pico HSM/OpenPGP frimware";
+  description = "Flake for build Pico HSM/OpenPGP firmware";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
