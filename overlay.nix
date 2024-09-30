@@ -13,7 +13,7 @@ final: prev: rec {
 
   pico-hsm-packages = prev.callPackage ./pkgs/pico-hsm-packages.nix { };
   pico-hsm = prev.callPackage (pico-hsm-packages.pico-hsm) { };
-
   pico-hsm-tool = prev.callPackage (pico-hsm-packages.pico-hsm-tool) { };
 
+  pico-nuke = prev.callPackage ./pkgs/pico-nuke.nix { };
 }

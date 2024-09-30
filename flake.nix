@@ -41,6 +41,7 @@
             pico-openpgp
             pico-hsm
             pico-hsm-tool
+            pico-nuke
             ;
         };
       }
