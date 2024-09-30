@@ -1,4 +1,9 @@
 {
+  picoBoard ? "waveshare_rp2040_one",
+  usbVid ? null,
+  usbPid ? null,
+  vidPid ? null,
+
   lib,
   stdenv,
   fetchFromGitHub,
@@ -7,11 +12,6 @@
   picotool,
   gcc-arm-embedded,
   python3,
-
-  picoBoard ? null,
-  usbVid ? null,
-  usbPid ? null,
-  vidPid ? null,
 }:
 
 stdenv.mkDerivation rec {
