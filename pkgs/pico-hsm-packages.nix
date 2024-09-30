@@ -16,15 +16,15 @@ let
   };
   pico-hsm =
     {
+      picoBoard ? "waveshare_rp2040_one",
+      usbVid ? null,
+      usbPid ? null,
+      vidPid ? null,
+
       cmake,
       pico-sdk,
       picotool,
       gcc-arm-embedded,
-
-      picoBoard ? null,
-      usbVid ? null,
-      usbPid ? null,
-      vidPid ? null,
     }:
     stdenv.mkDerivation {
       pname = "pico-hsm";
