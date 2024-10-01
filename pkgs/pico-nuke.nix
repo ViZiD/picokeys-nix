@@ -21,6 +21,7 @@ stdenv.mkDerivation rec {
     repo = "pico-nuke";
     rev = "v${version}";
     hash = "sha256-gQidS3lQlVb2kx0bEcD7N27WX8V+Ns2moSoPGPVJz+g=";
+    fetchSubmodules = true;
   };
 
   nativeBuildInputs = [
