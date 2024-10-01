@@ -1,5 +1,5 @@
 {
-  description = "Flake for build Pico HSM/OpenPGP firmware";
+  description = "Flake for build Pico HSM/OpenPGP/Fido firmware";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -42,6 +42,8 @@
             pico-hsm
             pico-hsm-tool
             pico-nuke
+            pico-fido
+            pico-fido-tool
             ;
         };
       }

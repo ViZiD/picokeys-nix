@@ -16,4 +16,8 @@ final: prev: rec {
   pico-hsm-tool = prev.callPackage (pico-hsm-packages.pico-hsm-tool) { };
 
   pico-nuke = prev.callPackage ./pkgs/pico-nuke.nix { };
+
+  pico-fido-packages = prev.callPackage ./pkgs/pico-fido-packages.nix { };
+  pico-fido = prev.callPackage (pico-fido-packages.pico-fido) { };
+  pico-fido-tool = pico-fido-packages.pico-fido-tool;
 }
