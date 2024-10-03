@@ -89,20 +89,18 @@ let
       pycvc,
       pypicohsm,
     }:
-    stdenv.mkDerivation {
+    python3.pkgs.buildPythonApplication {
       pname = "pico-hsm-tool";
       inherit version;
 
+      format = "other";
+
       src = source;
 
-      propagatedBuildInputs = [
-        (python3.withPackages (
-          pp: with pp; [
-            cryptography
-            pycvc
-            pypicohsm
-          ]
-        ))
+      dependencies = with python3.pkgs; [
+        cryptography
+        pycvc
+        pypicohsm
       ];
 
       installPhase = "install -Dm755 $src/tools/pico-hsm-tool.py $out/bin/pico-hsm-tool";
