@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    esp-dev.url = "github:mirrexagon/nixpkgs-esp-dev";
     flake-utils.url = "github:numtide/flake-utils";
   };
 
@@ -11,6 +12,7 @@
       self,
       nixpkgs,
       flake-utils,
+      esp-dev,
     }:
     {
       overlays.default = import ./overlay.nix;
@@ -22,6 +24,7 @@
           inherit system;
           overlays = [
             self.overlays.default
+            esp-dev.overlays.default
           ];
           config.allowUnfreePredicate =
             pkg:
@@ -39,6 +42,7 @@
             pycvc
             pypicohsm
             pico-openpgp
+            pico-openpgp-esp32
             pico-hsm
             pico-hsm-tool
             pico-nuke
