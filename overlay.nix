@@ -21,9 +21,9 @@ final: prev: rec {
   pico-openpgp = prev.callPackage ./pkgs/pico-openpgp.nix { };
 
   pico-openpgp-eddsa = pico-openpgp.override {
-    version = "2.2";
-    rev = "1d508f254dba13ba0b78a5de90bc7f30d2cf4ef5";
-    hash = "sha256-RfPQdaGzdozK1y5od9Unxjl19BejXTR9oluJiQuenqI=";
+    version = "3.0";
+    rev = "7f24b9f6b8e98caf91315f1a92867e0b99f02139";
+    hash = "sha256-s072dyzMoNUEQxYXRGC5l9qCShdL0LvZGqpTBjyACRo=";
   };
 
   pico-hsm-packages = prev.callPackage ./pkgs/pico-hsm-packages.nix { };
