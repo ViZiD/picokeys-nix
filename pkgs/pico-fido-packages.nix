@@ -5,12 +5,12 @@
   python3,
 }:
 let
-  version = "5.12";
+  version = "6.0";
   source = fetchFromGitHub {
     owner = "polhenarejos";
     repo = "pico-fido";
     rev = "v${version}";
-    hash = "sha256-CgoJRDabCdu6cL9Zm6uu0ohtZ/pULwPaifdxMJ0SPnM=";
+    hash = "sha256-mzSFRhnU43O+c/UjM0FCqx2om9aV0dtpkwFO/CyFke4=";
     fetchSubmodules = true;
   };
   pico-fido =
