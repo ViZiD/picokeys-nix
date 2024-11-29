@@ -33,9 +33,6 @@
       {
         packages = {
           inherit (pkgs)
-            pico-sdk
-            pico-sdk-minimal
-            picotool
             pycvc
             pypicohsm
             pico-openpgp
