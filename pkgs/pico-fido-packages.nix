@@ -21,7 +21,7 @@ let
       vidPid ? null,
 
       cmake,
-      pico-sdk,
+      pico-sdk-full,
       picotool,
       gcc-arm-embedded,
     }:
@@ -47,7 +47,7 @@ let
 
       cmakeFlags =
         [
-          "-DPICO_SDK_PATH=${pico-sdk}/lib/pico-sdk"
+          "-DPICO_SDK_PATH=${pico-sdk-full}/lib/pico-sdk"
           "-DCMAKE_C_COMPILER=${gcc-arm-embedded}/bin/arm-none-eabi-gcc"
           "-DCMAKE_CXX_COMPILER=${gcc-arm-embedded}/bin/arm-none-eabi-g++"
         ]

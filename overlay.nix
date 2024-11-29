@@ -1,10 +1,19 @@
 final: prev: rec {
-  pico-sdk = prev.callPackage ./pkgs/picosdk.nix { };
-  pico-sdk-minimal = prev.callPackage ./pkgs/picosdk.nix {
-    minimal = true;
-    picotool = null;
+  pico-sdk = prev.pico-sdk.overrideAttrs {
+    # author: https://github.com/leo60228 ##
+    setupHook = prev.writeText "setupHook.sh" ''
+      addPicoSdkPath() {
+        if [ -e "$1/lib/pico-sdk" ]; then
+          export PICO_SDK_PATH="$1/lib/pico-sdk"
+        fi
+      }
+      addEnvHooks "$hostOffset" addPicoSdkPath
+      ##
+    '';
   };
-  picotool = prev.callPackage ./pkgs/picotool.nix { };
+  pico-sdk-full = pico-sdk.override {
+    withSubmodules = true;
+  };
 
   pycvc = prev.callPackage ./pkgs/pycvc.nix { };
   pypicohsm = prev.callPackage ./pkgs/pypicohsm.nix { };
