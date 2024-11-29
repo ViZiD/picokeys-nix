@@ -4,6 +4,10 @@
   usbPid ? null,
   vidPid ? null,
 
+  version ? "2.2",
+  rev ? "v2.2",
+  hash ? "sha256-XqZNpkwRrSKxizW11gVdiBB1R9ijeIOckqojOF1BU8k=",
+
   lib,
   stdenv,
   fetchFromGitHub,
@@ -16,13 +20,12 @@
 
 stdenv.mkDerivation rec {
   pname = "pico-openpgp";
-  version = "2.2";
+  inherit version;
 
   src = fetchFromGitHub {
+    inherit rev hash;
     owner = "polhenarejos";
     repo = "pico-openpgp";
-    rev = "v${version}";
-    hash = "sha256-XqZNpkwRrSKxizW11gVdiBB1R9ijeIOckqojOF1BU8k=";
     fetchSubmodules = true;
   };
 
