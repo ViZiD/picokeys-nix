@@ -36,6 +36,7 @@
             pycvc
             pypicohsm
             pico-openpgp
+            pico-openpgp-eddsa
             pico-hsm
             pico-hsm-tool
             pico-nuke

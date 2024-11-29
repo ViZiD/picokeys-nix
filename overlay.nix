@@ -20,6 +20,12 @@ final: prev: rec {
 
   pico-openpgp = prev.callPackage ./pkgs/pico-openpgp.nix { };
 
+  pico-openpgp-eddsa = pico-openpgp.override {
+    version = "2.2";
+    rev = "1d508f254dba13ba0b78a5de90bc7f30d2cf4ef5";
+    hash = "sha256-RfPQdaGzdozK1y5od9Unxjl19BejXTR9oluJiQuenqI=";
+  };
+
   pico-hsm-packages = prev.callPackage ./pkgs/pico-hsm-packages.nix { };
   pico-hsm = prev.callPackage (pico-hsm-packages.pico-hsm) { };
   pico-hsm-tool = prev.callPackage (pico-hsm-packages.pico-hsm-tool) { };
