@@ -1,49 +1,23 @@
 {
   description = "Flake for build Pico HSM/OpenPGP/Fido firmware";
-
-  inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    flake-utils.url = "github:numtide/flake-utils";
-  };
-
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
   outputs =
+    { self, nixpkgs }:
+    let
+      systems = [
+        "x86_64-linux"
+      ];
+      forAllSystems = f: nixpkgs.lib.genAttrs systems (system: f system);
+    in
     {
-      self,
-      nixpkgs,
-      flake-utils,
-    }:
-    {
-      overlays.default = import ./overlay.nix;
-    }
-    // flake-utils.lib.eachDefaultSystem (
-      system:
-      let
-        pkgs = import nixpkgs {
-          inherit system;
-          overlays = [
-            self.overlays.default
-          ];
-          config.allowUnfreePredicate =
-            pkg:
-            builtins.elem (pkgs.lib.getName pkg) [
-              "pico-sdk"
-            ];
-        };
-      in
-      {
-        packages = {
-          inherit (pkgs)
-            pycvc
-            pypicohsm
-            pico-openpgp
-            pico-openpgp-eddsa
-            pico-hsm
-            pico-hsm-tool
-            pico-nuke
-            pico-fido
-            pico-fido-tool
-            ;
-        };
-      }
-    );
+      legacyPackages = forAllSystems (
+        system:
+        import ./default.nix {
+          pkgs = import nixpkgs { inherit system; };
+        }
+      );
+      packages = forAllSystems (
+        system: nixpkgs.lib.filterAttrs (_: v: nixpkgs.lib.isDerivation v) self.legacyPackages.${system}
+      );
+    };
 }
