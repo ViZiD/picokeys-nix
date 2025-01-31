@@ -40,8 +40,16 @@ let
         python3
       ];
 
+      patches = [ ./rp2350_one.patch ];
+      patchFlags = [
+        "-p1"
+        "-d"
+        "pico-keys-sdk"
+      ];
+
       phases = [
         "unpackPhase"
+        "patchPhase"
         "configurePhase"
         "buildPhase"
         "installPhase"

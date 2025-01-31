@@ -1,0 +1,12 @@
+diff --git a/cmake/boards.cmake b/cmake/boards.cmake
+index a6145a2..6a08c72 100644
+--- a/cmake/boards.cmake
++++ b/cmake/boards.cmake
+@@ -63,6 +63,7 @@ dict(SET led_driver waveshare_rp2040_one led_ws2812)
+ dict(SET led_driver waveshare_rp2040_plus_4mb led_pico)
+ dict(SET led_driver waveshare_rp2040_plus_16mb led_pico)
+ dict(SET led_driver waveshare_rp2040_zero led_ws2812)
++dict(SET led_driver waveshare_rp2350_one led_ws2812)
+ dict(SET led_driver weact_studio_rp2040_2mb led_pico)
+ dict(SET led_driver weact_studio_rp2040_4mb led_pico)
+ dict(SET led_driver weact_studio_rp2040_8mb led_pico)

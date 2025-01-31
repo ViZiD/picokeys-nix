@@ -29,6 +29,13 @@ stdenv.mkDerivation rec {
     fetchSubmodules = true;
   };
 
+  patches = [ ./rp2350_one.patch ];
+  patchFlags = [
+    "-p1"
+    "-d"
+    "pico-keys-sdk"
+  ];
+
   nativeBuildInputs = [
     cmake
     gcc-arm-embedded
@@ -38,6 +45,7 @@ stdenv.mkDerivation rec {
 
   phases = [
     "unpackPhase"
+    "patchPhase"
     "configurePhase"
     "buildPhase"
     "installPhase"

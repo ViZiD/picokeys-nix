@@ -14,18 +14,18 @@
 
 stdenv.mkDerivation (finalAttrs: {
   pname = "pico-sdk";
-  version = "2.1.0";
+  version = "2.1.1dev";
 
   src = fetchFromGitHub {
     owner = "raspberrypi";
     repo = "pico-sdk";
-    rev = finalAttrs.version;
+    rev = "3d746b3fa7ea7aa5ed80f66e47d54850e96da1f5";
     fetchSubmodules = withSubmodules;
     hash =
       if withSubmodules then
-        "sha256-nLn6H/P79Jbk3/TIowH2WqmHFCXKEy7lgs7ZqhqJwDM="
+        "sha256-TlXLQ/DZ3no5YJhWoceQkSuya34/ZVQdBjuZQp+HKbc="
       else
-        "sha256-QKc16Wnx2AvpM0/bklY8CnbsShVR1r5ejtRlvE8f8mM=";
+        "sha256-WhJm6jWslcWWKyQp6vHENKBX/1JyYPi6DL1NRmH6l5Q=";
   };
 
   nativeBuildInputs = [ cmake ];
