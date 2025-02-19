@@ -14,6 +14,10 @@ let
     }
   );
   pico-hsm-packages = pkgs.callPackage ./pkgs/pico-hsm-packages.nix { };
+  pico-hsm-eddsa-packages = pkgs.callPackage ./pkgs/pico-hsm-packages.nix {
+    rev = "v5.4-eddsa1";
+    hash = "sha256-38rg5NhQnJSVrHFywQxKTK3kxy6EktPNxJAZNIWe5Mw=";
+  };
   pico-fido-packages = pkgs.callPackage ./pkgs/pico-fido-packages.nix { };
 in
 rec {
@@ -33,6 +37,8 @@ rec {
   pico-hsm-tool = pkgs.callPackage (pico-hsm-packages.pico-hsm-tool) {
     inherit pycvc pypicohsm;
   };
+
+  pico-hsm-eddsa = callPkgWithSdk (pico-hsm-eddsa-packages.pico-hsm) { };
 
   pico-nuke = callPkgWithSdk ./pkgs/pico-nuke.nix { };
 
