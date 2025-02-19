@@ -19,6 +19,10 @@ let
     hash = "sha256-38rg5NhQnJSVrHFywQxKTK3kxy6EktPNxJAZNIWe5Mw=";
   };
   pico-fido-packages = pkgs.callPackage ./pkgs/pico-fido-packages.nix { };
+  pico-fido-eddsa-packages = pkgs.callPackage ./pkgs/pico-fido-packages.nix {
+    rev = "v6.4-eddsa1";
+    hash = "sha256-Fqbn5349IzpKYIRzsYAJhmqDQCCd9ERcjlBXQeemt9c=";
+  };
 in
 rec {
   overlays = import ./overlays;
@@ -44,4 +48,6 @@ rec {
 
   pico-fido = callPkgWithSdk (pico-fido-packages.pico-fido) { };
   pico-fido-tool = pico-fido-packages.pico-fido-tool;
+
+  pico-fido-eddsa = callPkgWithSdk (pico-fido-eddsa-packages.pico-fido) { };
 }
