@@ -25,9 +25,8 @@ rec {
   pico-openpgp = callPkgWithSdk ./pkgs/pico-openpgp.nix { };
 
   pico-openpgp-eddsa = pico-openpgp.override {
-    version = "3.2";
-    rev = "7050e6b19f03d5956fd14930dcefab97dc213834";
-    hash = "sha256-Bja4cyRreQr5siTJcUMPgsqT4uNgvdzWeCEST5xQuFs=";
+    rev = "v3.4-eddsa1";
+    hash = "sha256-6ObCH1EFRyGzCmemO+J8mMr637RNyxCwEArWS//IECc=";
   };
 
   pico-hsm = callPkgWithSdk (pico-hsm-packages.pico-hsm) { };
