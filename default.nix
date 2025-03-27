@@ -25,6 +25,8 @@ let
   };
 in
 rec {
+  inherit picotool;
+
   overlays = import ./overlays;
 
   pycvc = pkgs.callPackage ./pkgs/pycvc.nix { };
