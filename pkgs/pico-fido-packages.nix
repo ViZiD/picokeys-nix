@@ -40,6 +40,7 @@ let
 
       phases = [
         "unpackPhase"
+        "patchPhase"
         "configurePhase"
         "buildPhase"
         "installPhase"
@@ -65,9 +66,9 @@ let
           "-DENABLE_EDDSA=1"
         ];
 
-      postUnpack = ''
-        cp -r ${pico-keys-sdk { inherit eddsaSupport; }}/share/pico-keys-sdk source
-        chmod -R +w source/pico-keys-sdk
+      prePatch = ''
+        cp -r ${pico-keys-sdk { inherit eddsaSupport; }}/share/pico-keys-sdk .
+        chmod -R +w pico-keys-sdk
       '';
 
       installPhase = ''
