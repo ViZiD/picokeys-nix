@@ -26,6 +26,8 @@ let
       usbPid ? null,
       vidPid ? null,
       eddsaSupport ? false,
+      secureBootKey ? null,
+      generateOtpFile ? false,
     }:
     stdenv.mkDerivation {
       pname = "pico-fido${lib.optionalString eddsaSupport "-eddsa"}";
@@ -62,10 +64,12 @@ let
         ++ lib.optional (vidPid != null) [
           (lib.cmakeFeature "VIDPID" vidPid)
         ]
+        ++ lib.optional (secureBootKey != null) [
+          (lib.cmakeFeature "SECURE_BOOT_PKEY" secureBootKey)
         ];
 
       prePatch = ''
-        cp -r ${pico-keys-sdk { inherit eddsaSupport; }}/share/pico-keys-sdk .
+        cp -r ${pico-keys-sdk { inherit eddsaSupport generateOtpFile; }}/share/pico-keys-sdk .
         chmod -R +w pico-keys-sdk
       '';
 
@@ -79,7 +83,12 @@ let
           vidPid != null && picoBoard == null
         ) "mv pico_fido.uf2 pico_fido${lib.optionalString eddsaSupport "_eddsa"}_${vidPid}-${version}.uf2"}
         mkdir -p $out
-        cp -r *.uf2 $out
+        cp *.uf2 $out
+        runHook postInstall        
+      '';
+
+      postInstall = lib.optionalString generateOtpFile ''
+        cp /build/source/otp.json $out
       '';
 
       meta = {

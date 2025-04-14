@@ -1,5 +1,7 @@
 {
   picoBoard ? "waveshare_rp2040_one",
+  secureBootKey ? null,
+  generateOtpFile ? false,
 
   lib,
   stdenv,
@@ -24,6 +26,11 @@ stdenv.mkDerivation rec {
     fetchSubmodules = true;
   };
 
+  prePatch = lib.optionalString generateOtpFile ''
+    sed -i -e '/pico_hash_binary(''${CMAKE_PROJECT_NAME})/a\
+    pico_set_otp_key_output_file(''${CMAKE_PROJECT_NAME} ''${CMAKE_CURRENT_SOURCE_DIR}/otp.json)' CMakeLists.txt
+  '';
+
   nativeBuildInputs = [
     cmake
     gcc-arm-embedded
@@ -33,6 +40,7 @@ stdenv.mkDerivation rec {
 
   phases = [
     "unpackPhase"
+    "patchPhase"
     "configurePhase"
     "buildPhase"
     "installPhase"
@@ -46,12 +54,19 @@ stdenv.mkDerivation rec {
 
       (lib.cmakeFeature "PICO_BOARD" picoBoard)
     ]
+    ++ lib.optional (secureBootKey != null) [
+      (lib.cmakeFeature "SECURE_BOOT_PKEY" secureBootKey)
     ];
 
   installPhase = ''
     ${lib.optionalString (picoBoard != null) "mv flash_nuke.uf2 flash_nuke_${picoBoard}-${version}.uf2"}
     mkdir -p $out
-    cp -r *.uf2 $out
+    cp *.uf2 $out
+    runHook postInstall
+  '';
+
+  postInstall = lib.optionalString generateOtpFile ''
+    cp /build/source/otp.json $out
   '';
 
   meta = {
