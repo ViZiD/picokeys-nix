@@ -14,13 +14,13 @@
 
 stdenv.mkDerivation rec {
   pname = "pico-nuke";
-  version = "1.3";
+  version = "1.4";
 
   src = fetchFromGitHub {
     owner = "polhenarejos";
     repo = "pico-nuke";
     rev = "v${version}";
-    hash = "sha256-c4T3BinzP9P7xn4zpjyElX/1f0CSwr3Z0opnoNndj/w=";
+    hash = "sha256-qpNxdR7Pr7ch8XHp4mLA45/AJjMtElj/hVK0YXVngrA=";
     fetchSubmodules = true;
   };
 
