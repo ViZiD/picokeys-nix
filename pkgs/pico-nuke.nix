@@ -40,12 +40,12 @@ stdenv.mkDerivation rec {
 
   cmakeFlags =
     [
-      "-DPICO_SDK_PATH=${pico-sdk-full}/lib/pico-sdk"
-      "-DCMAKE_C_COMPILER=${gcc-arm-embedded}/bin/arm-none-eabi-gcc"
-      "-DCMAKE_CXX_COMPILER=${gcc-arm-embedded}/bin/arm-none-eabi-g++"
+      (lib.cmakeFeature "CMAKE_CXX_COMPILER" "${gcc-arm-embedded}/bin/arm-none-eabi-g++")
+      (lib.cmakeFeature "CMAKE_C_COMPILER" "${gcc-arm-embedded}/bin/arm-none-eabi-gcc")
+      (lib.cmakeFeature "PICO_SDK_PATH" "${pico-sdk-full}/lib/pico-sdk")
+
+      (lib.cmakeFeature "PICO_BOARD" picoBoard)
     ]
-    ++ lib.optional (picoBoard != null) [
-      "-DPICO_BOARD=${picoBoard}"
     ];
 
   installPhase = ''

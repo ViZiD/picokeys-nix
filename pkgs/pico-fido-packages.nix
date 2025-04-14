@@ -48,22 +48,20 @@ let
 
       cmakeFlags =
         [
-          "-DPICO_SDK_PATH=${pico-sdk-full}/lib/pico-sdk"
-          "-DCMAKE_C_COMPILER=${gcc-arm-embedded}/bin/arm-none-eabi-gcc"
-          "-DCMAKE_CXX_COMPILER=${gcc-arm-embedded}/bin/arm-none-eabi-g++"
+          (lib.cmakeFeature "CMAKE_CXX_COMPILER" "${gcc-arm-embedded}/bin/arm-none-eabi-g++")
+          (lib.cmakeFeature "CMAKE_C_COMPILER" "${gcc-arm-embedded}/bin/arm-none-eabi-gcc")
+          (lib.cmakeFeature "PICO_SDK_PATH" "${pico-sdk-full}/lib/pico-sdk")
+
+          (lib.cmakeFeature "PICO_BOARD" picoBoard)
+          (lib.cmakeBool "ENABLE_EDDSA" eddsaSupport)
         ]
-        ++ lib.optional (picoBoard != null) [
-          "-DPICO_BOARD=${picoBoard}"
+        ++ lib.optional (usbVid != null && usbPid != null) [
+          (lib.cmakeFeature "USB_VID" usbVid)
+          (lib.cmakeFeature "USB_PID" usbPid)
         ]
-        ++ lib.optional (usbVid != null) [
-          "-DUSB_VID=${usbVid}"
+        ++ lib.optional (vidPid != null) [
+          (lib.cmakeFeature "VIDPID" vidPid)
         ]
-        ++ lib.optional (usbPid != null) [
-          "-DUSB_PID=${usbPid}"
-        ]
-        ++ lib.optional (vidPid != null) [ "-DVIDPID=${vidPid}" ]
-        ++ lib.optional eddsaSupport [
-          "-DENABLE_EDDSA=1"
         ];
 
       prePatch = ''
