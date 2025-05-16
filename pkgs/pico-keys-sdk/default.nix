@@ -26,7 +26,7 @@ lib.makeOverridable (
 
     prePatch = lib.optionalString generateOtpFile ''
       sed -i -e '/pico_hash_binary(''${CMAKE_PROJECT_NAME})/a\
-      pico_set_otp_key_output_file(''${CMAKE_PROJECT_NAME} ''${CMAKE_CURRENT_SOURCE_DIR}/otp.json)' pico_keys_sdk_import.cmake
+      pico_set_otp_key_output_file(''${CMAKE_PROJECT_NAME} otp.json)' pico_keys_sdk_import.cmake
     '';
 
     dontBuild = true;

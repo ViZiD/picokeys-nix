@@ -88,7 +88,7 @@ let
       '';
 
       postInstall = lib.optionalString generateOtpFile ''
-        cp /build/source/otp.json $out
+        cp otp.json $out
       '';
 
       meta = {
