@@ -28,7 +28,7 @@ stdenv.mkDerivation rec {
 
   prePatch = lib.optionalString generateOtpFile ''
     sed -i -e '/pico_hash_binary(''${CMAKE_PROJECT_NAME})/a\
-    pico_set_otp_key_output_file(''${CMAKE_PROJECT_NAME} ''${CMAKE_CURRENT_SOURCE_DIR}/otp.json)' CMakeLists.txt
+    pico_set_otp_key_output_file(''${CMAKE_PROJECT_NAME} otp.json)' CMakeLists.txt
   '';
 
   nativeBuildInputs = [
@@ -66,7 +66,7 @@ stdenv.mkDerivation rec {
   '';
 
   postInstall = lib.optionalString generateOtpFile ''
-    cp /build/source/otp.json $out
+    cp otp.json $out
   '';
 
   meta = {
