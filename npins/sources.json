@@ -94,9 +94,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "11d8a5343c7aa76b8b32d0ec1ffc3e70ecb0eb13",
-      "url": "https://github.com/polhenarejos/pico-keys-sdk/archive/11d8a5343c7aa76b8b32d0ec1ffc3e70ecb0eb13.tar.gz",
-      "hash": "0dijq5h2rcwlpgwp4dijlgigxw65gar5a5s0zi6wxvvf0cm2pn2y"
+      "revision": "da3a7f25d0a7c5718d0288b2c3d369b9abee6049",
+      "url": "https://github.com/polhenarejos/pico-keys-sdk/archive/da3a7f25d0a7c5718d0288b2c3d369b9abee6049.tar.gz",
+      "hash": "1nxg8r9xzc4hfh29kdx11jm0k73rjqsvj8f8xzf0b8l22jy77g4k"
     },
     "pico-nuke": {
       "type": "GitRelease",
