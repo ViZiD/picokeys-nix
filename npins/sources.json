@@ -39,9 +39,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "513642663b9e5ec4ab83cbc0afa14885421b5442",
-      "url": "https://github.com/polhenarejos/pico-fido/archive/513642663b9e5ec4ab83cbc0afa14885421b5442.tar.gz",
-      "hash": "1qmyz0v2j6j9qz85vv48v7fv2db10g10l6xgl0an84k7pdbx819q"
+      "revision": "93523faf025dd147e7094508de3b98fe1792c811",
+      "url": "https://github.com/polhenarejos/pico-fido/archive/93523faf025dd147e7094508de3b98fe1792c811.tar.gz",
+      "hash": "0d6kqpvpszjv24sj8hrixqp3swdyv89knc7rlgialcc2mfcnkp8g"
     },
     "pico-fido2-latest": {
       "type": "Git",
@@ -52,8 +52,8 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "56066d4ba00a2898b5c957903997c43fa97e0057",
-      "url": "https://github.com/polhenarejos/pico-fido2/archive/56066d4ba00a2898b5c957903997c43fa97e0057.tar.gz",
+      "revision": "aeeb7931675c6afb17cd9c5264d46dedbc047755",
+      "url": "https://github.com/polhenarejos/pico-fido2/archive/aeeb7931675c6afb17cd9c5264d46dedbc047755.tar.gz",
       "hash": "0cvb2bhhpddpqjf0k1802jfar3rjx6lndbxdkgnna3xys6nmk6vs"
     },
     "pico-hsm": {
