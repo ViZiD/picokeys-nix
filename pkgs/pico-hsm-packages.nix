@@ -1,7 +1,6 @@
 {
   lib,
   stdenv,
-  fetchFromGitHub,
   python3,
 
   cmake,
@@ -10,16 +9,14 @@
   gcc-arm-embedded,
 
   pico-keys-sdk,
+  sources,
+  nightly ? false,
 }:
 
 let
-  version = "5.6";
-  src = fetchFromGitHub {
-    owner = "polhenarejos";
-    repo = "pico-hsm";
-    rev = "v${version}";
-    hash = "sha256-mCpNzFlj4mJNJ01dlBDIrSXI5fCPSF+YgPXnesq3XlY=";
-  };
+  src = if nightly then sources.pico-hsm-latest else sources.pico-hsm;
+  version = (lib.mkSourceVersion src nightly);
+
   pico-hsm =
     {
       picoBoard ? "waveshare_rp2040_one",
@@ -32,8 +29,8 @@ let
       generateOtpFile ? false,
     }:
     stdenv.mkDerivation {
-      pname = "pico-hsm${lib.optionalString eddsaSupport "-eddsa"}";
-      inherit version src;
+      pname = "pico-hsm${lib.optionalString eddsaSupport "-eddsa"}${lib.optionalString nightly "-nightly"}";
+      inherit src version;
 
       nativeBuildInputs = [
         cmake

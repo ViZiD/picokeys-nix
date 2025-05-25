@@ -8,7 +8,7 @@
   eddsaSupport ? false,
   secureBootKey ? null,
   generateOtpFile ? false,
-  nightly ? false,
+  nightly ? true,
 
   lib,
   stdenv,
@@ -22,9 +22,9 @@
   sources,
 }:
 stdenv.mkDerivation rec {
-  pname = "pico-openpgp${lib.optionalString eddsaSupport "-eddsa"}${lib.optionalString nightly "-nightly"}";
+  pname = "pico_fido2${lib.optionalString eddsaSupport "-eddsa"}${lib.optionalString nightly "-nightly"}";
 
-  src = if nightly then sources.pico-openpgp-latest else sources.pico-openpgp;
+  src = if nightly then sources.pico-fido2-latest else sources.pico-fido2-latest; # FIXME: wait for releases
   version = (lib.mkSourceVersion src nightly);
 
   nativeBuildInputs = [
@@ -65,17 +65,22 @@ stdenv.mkDerivation rec {
 
   prePatch = ''
     cp -r ${pico-keys-sdk { inherit eddsaSupport generateOtpFile; }}/share/pico-keys-sdk .
+    cp -r ${sources.pico-openpgp-latest}/* pico-openpgp
+    cp -r ${sources.pico-fido-latest}/* pico-fido
+
     chmod -R +w pico-keys-sdk
+    chmod -R +w pico-openpgp
+    chmod -R +w pico-fido
   '';
 
   installPhase = ''
     ${lib.optionalString (picoBoard != null)
-      "mv pico_openpgp.uf2 pico_openpgp${lib.optionalString eddsaSupport "_eddsa"}_${
+      "mv pico_fido2.uf2 pico_fido2${lib.optionalString eddsaSupport "_eddsa"}_${
         lib.optionalString (vidPid != null) "${vidPid}-"
       }${picoBoard}-${version}.uf2"
     }
     ${lib.optionalString (vidPid != null && picoBoard == null)
-      "mv pico_openpgp.uf2 pico_openpgp${lib.optionalString eddsaSupport "_eddsa"}_${vidPid}-${version}.uf2"
+      "mv pico_fido2.uf2 pico_fido2${lib.optionalString eddsaSupport "_eddsa"}_${vidPid}-${version}.uf2"
     }
 
     mkdir -p $out
@@ -88,9 +93,9 @@ stdenv.mkDerivation rec {
   '';
 
   meta = {
-    description = "Converting a Raspberry Pico into an OpenPGP CCID smart card";
-    homepage = "https://github.com/polhenarejos/pico-openpgp";
-    license = lib.licenses.gpl3Only;
+    description = "Pico Fido + Pico OpenPGP";
+    homepage = "https://github.com/polhenarejos/pico-fido2";
+    license = lib.licenses.unlicense;
     maintainers = with lib.maintainers; [ vizid ];
   };
 }

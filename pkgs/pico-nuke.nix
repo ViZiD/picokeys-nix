@@ -2,29 +2,24 @@
   picoBoard ? "waveshare_rp2040_one",
   secureBootKey ? null,
   generateOtpFile ? false,
+  nightly ? false,
 
   lib,
   stdenv,
-  fetchFromGitHub,
 
   cmake,
   gcc-arm-embedded,
   picotool,
   python3,
   pico-sdk-full,
+  sources,
 }:
 
 stdenv.mkDerivation rec {
-  pname = "pico-nuke";
-  version = "1.4";
+  pname = "pico-nuke${lib.optionalString nightly "-nightly"}";
 
-  src = fetchFromGitHub {
-    owner = "polhenarejos";
-    repo = "pico-nuke";
-    rev = "v${version}";
-    hash = "sha256-qpNxdR7Pr7ch8XHp4mLA45/AJjMtElj/hVK0YXVngrA=";
-    fetchSubmodules = true;
-  };
+  src = if nightly then sources.pico-nuke-latest else sources.pico-nuke;
+  version = (lib.mkSourceVersion src nightly);
 
   prePatch = lib.optionalString generateOtpFile ''
     sed -i -e '/pico_hash_binary(''${CMAKE_PROJECT_NAME})/a\

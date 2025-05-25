@@ -1,19 +1,14 @@
 {
   lib,
   stdenvNoCC,
-  fetchFromGitHub,
+  sources,
 }:
 
 stdenvNoCC.mkDerivation {
   pname = "tinycbor";
-  version = "unstable-2022-09-07";
+  version = sources.tinycbor.revision;
 
-  src = fetchFromGitHub {
-    owner = "intel";
-    repo = "tinycbor";
-    rev = "e27261ed5e2ed059d160f16ae776951a08a861fc";
-    hash = "sha256-/5FcwsEhJfh6noV0HJAQVTHBGHDBc99KwOnPsaeUlLw=";
-  };
+  src = sources.tinycbor;
 
   dontBuild = true;
   dontConfigure = true;

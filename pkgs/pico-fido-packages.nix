@@ -1,8 +1,6 @@
 {
   lib,
   stdenv,
-  fetchFromGitHub,
-
   python3,
   cmake,
   pico-sdk-full,
@@ -10,15 +8,13 @@
   gcc-arm-embedded,
 
   pico-keys-sdk,
+  sources,
+  nightly ? false,
 }:
 let
-  version = "6.6";
-  src = fetchFromGitHub {
-    owner = "polhenarejos";
-    repo = "pico-fido";
-    rev = "v${version}";
-    hash = "sha256-Em8QULTe+NlTeSYZe/pmfCPBABpLHrIyviOD8N4KX14=";
-  };
+  src = if nightly then sources.pico-fido-latest else sources.pico-fido;
+  version = (lib.mkSourceVersion src nightly);
+
   pico-fido =
     {
       picoBoard ? "waveshare_rp2040_one",
@@ -31,8 +27,9 @@ let
       generateOtpFile ? false,
     }:
     stdenv.mkDerivation {
-      pname = "pico-fido${lib.optionalString eddsaSupport "-eddsa"}";
-      inherit version src;
+      pname = "pico-fido${lib.optionalString eddsaSupport "-eddsa"}${lib.optionalString nightly "-nightly"}";
+
+      inherit src version;
 
       nativeBuildInputs = [
         cmake

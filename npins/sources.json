@@ -1,0 +1,223 @@
+{
+  "pins": {
+    "nixpkgs": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "NixOS",
+        "repo": "nixpkgs"
+      },
+      "branch": "nixpkgs-unstable",
+      "submodules": false,
+      "revision": "fe51d34885f7b5e3e7b59572796e1bcb427eccb1",
+      "url": "https://github.com/NixOS/nixpkgs/archive/fe51d34885f7b5e3e7b59572796e1bcb427eccb1.tar.gz",
+      "hash": "0pg3ibyagan1y57l1q1rwyrygrwg02p59p0fbgl23hf1nw58asda",
+      "frozen": true
+    },
+    "pico-fido": {
+      "type": "GitRelease",
+      "repository": {
+        "type": "GitHub",
+        "owner": "polhenarejos",
+        "repo": "pico-fido"
+      },
+      "pre_releases": false,
+      "version_upper_bound": null,
+      "release_prefix": null,
+      "submodules": false,
+      "version": "v6.6",
+      "revision": "a0ae356108b9c7caaba2e861f49c15ddd7437700",
+      "url": "https://api.github.com/repos/polhenarejos/pico-fido/tarball/v6.6",
+      "hash": "0pjz1bgg10r3pqrb47jb380c28vwcvx7n696g59xky6yni810vqj"
+    },
+    "pico-fido-latest": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "polhenarejos",
+        "repo": "pico-fido"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "513642663b9e5ec4ab83cbc0afa14885421b5442",
+      "url": "https://github.com/polhenarejos/pico-fido/archive/513642663b9e5ec4ab83cbc0afa14885421b5442.tar.gz",
+      "hash": "1qmyz0v2j6j9qz85vv48v7fv2db10g10l6xgl0an84k7pdbx819q"
+    },
+    "pico-fido2-latest": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "polhenarejos",
+        "repo": "pico-fido2"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "56066d4ba00a2898b5c957903997c43fa97e0057",
+      "url": "https://github.com/polhenarejos/pico-fido2/archive/56066d4ba00a2898b5c957903997c43fa97e0057.tar.gz",
+      "hash": "0cvb2bhhpddpqjf0k1802jfar3rjx6lndbxdkgnna3xys6nmk6vs"
+    },
+    "pico-hsm": {
+      "type": "GitRelease",
+      "repository": {
+        "type": "GitHub",
+        "owner": "polhenarejos",
+        "repo": "pico-hsm"
+      },
+      "pre_releases": false,
+      "version_upper_bound": null,
+      "release_prefix": null,
+      "submodules": false,
+      "version": "v5.6",
+      "revision": "faff23aa7dbc6430fc57be745a49a2e622ea0b5f",
+      "url": "https://api.github.com/repos/polhenarejos/pico-hsm/tarball/v5.6",
+      "hash": "0mjynz57mrzmh2c5yj4gy3jwh9ddr0898pad4x6n5qk3b764salq"
+    },
+    "pico-hsm-latest": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "polhenarejos",
+        "repo": "pico-hsm"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "a0f6abf6a6f9073a357ed23b5ef0c7c11e20ea24",
+      "url": "https://github.com/polhenarejos/pico-hsm/archive/a0f6abf6a6f9073a357ed23b5ef0c7c11e20ea24.tar.gz",
+      "hash": "146xy1mav4p19mbxz64gqyy9hg70kcm603x8l8nna2afpwp5g2j9"
+    },
+    "pico-keys-sdk": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "polhenarejos",
+        "repo": "pico-keys-sdk"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "11d8a5343c7aa76b8b32d0ec1ffc3e70ecb0eb13",
+      "url": "https://github.com/polhenarejos/pico-keys-sdk/archive/11d8a5343c7aa76b8b32d0ec1ffc3e70ecb0eb13.tar.gz",
+      "hash": "0dijq5h2rcwlpgwp4dijlgigxw65gar5a5s0zi6wxvvf0cm2pn2y"
+    },
+    "pico-nuke": {
+      "type": "GitRelease",
+      "repository": {
+        "type": "GitHub",
+        "owner": "polhenarejos",
+        "repo": "pico-nuke"
+      },
+      "pre_releases": false,
+      "version_upper_bound": null,
+      "release_prefix": null,
+      "submodules": false,
+      "version": "v1.4",
+      "revision": "9f860dd62a5c7c635c227dcad6f3bd190ddec75a",
+      "url": "https://api.github.com/repos/polhenarejos/pico-nuke/tarball/v1.4",
+      "hash": "1c42cxsn3d2jhpzmh4id6ckc17z3q1if5sbiy4hvgbyg3rsp34xa"
+    },
+    "pico-nuke-latest": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "polhenarejos",
+        "repo": "pico-nuke"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "eb6dd20421b99a87b83f4cba172f240ea0d3bfa8",
+      "url": "https://github.com/polhenarejos/pico-nuke/archive/eb6dd20421b99a87b83f4cba172f240ea0d3bfa8.tar.gz",
+      "hash": "1h4v763dzb2fri371hd1v4h9bgwapf44dgpx93nabfrwhc23bm2b"
+    },
+    "pico-openpgp": {
+      "type": "GitRelease",
+      "repository": {
+        "type": "GitHub",
+        "owner": "polhenarejos",
+        "repo": "pico-openpgp"
+      },
+      "pre_releases": false,
+      "version_upper_bound": null,
+      "release_prefix": null,
+      "submodules": false,
+      "version": "v3.6",
+      "revision": "c9ffd7acda9ce0e0de4fbe3aaf5cf3654325d924",
+      "url": "https://api.github.com/repos/polhenarejos/pico-openpgp/tarball/v3.6",
+      "hash": "1bfvl3v3g3dkz2lnvw2y90anqy32xg80znibmld49b9fc75f3bfd"
+    },
+    "pico-openpgp-latest": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "polhenarejos",
+        "repo": "pico-openpgp"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "1a24a9ed1bdadd64a572fa3e4cc06fc7b4aba66d",
+      "url": "https://github.com/polhenarejos/pico-openpgp/archive/1a24a9ed1bdadd64a572fa3e4cc06fc7b4aba66d.tar.gz",
+      "hash": "00y2h8jphi6anv0cazpyyhslx78rll66jd93dhxh938xx6xsgc12"
+    },
+    "pico-sdk": {
+      "type": "GitRelease",
+      "repository": {
+        "type": "GitHub",
+        "owner": "raspberrypi",
+        "repo": "pico-sdk"
+      },
+      "pre_releases": false,
+      "version_upper_bound": null,
+      "release_prefix": null,
+      "submodules": false,
+      "version": "2.1.1",
+      "revision": "bddd20f928ce76142793bef434d4f75f4af6e433",
+      "url": "https://api.github.com/repos/raspberrypi/pico-sdk/tarball/2.1.1",
+      "hash": "0k3dh6v8bzv1rrvsvqxzgq12lwdx2wlk1vydnbg5znxz1v5vp4vs"
+    },
+    "pico-sdk-full": {
+      "type": "GitRelease",
+      "repository": {
+        "type": "GitHub",
+        "owner": "raspberrypi",
+        "repo": "pico-sdk"
+      },
+      "pre_releases": false,
+      "version_upper_bound": null,
+      "release_prefix": null,
+      "submodules": true,
+      "version": "2.1.1",
+      "revision": "bddd20f928ce76142793bef434d4f75f4af6e433",
+      "url": null,
+      "hash": "1a5s5pvqv8kzvj1f0ryydbrcm7akyc5l96hgr6v59mzcd2wbbfzj"
+    },
+    "picotool": {
+      "type": "GitRelease",
+      "repository": {
+        "type": "GitHub",
+        "owner": "raspberrypi",
+        "repo": "picotool"
+      },
+      "pre_releases": false,
+      "version_upper_bound": null,
+      "release_prefix": null,
+      "submodules": false,
+      "version": "2.1.1",
+      "revision": "de8ae5ac334e1126993f72a5c67949712fd1e1a4",
+      "url": "https://api.github.com/repos/raspberrypi/picotool/tarball/2.1.1",
+      "hash": "0mj50ifhyjahh3jz0jmffzwnrrq90q0cxvy6a5rjj6wlfhapn3aq"
+    },
+    "tinycbor": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "intel",
+        "repo": "tinycbor"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "e27261ed5e2ed059d160f16ae776951a08a861fc",
+      "url": "https://github.com/intel/tinycbor/archive/e27261ed5e2ed059d160f16ae776951a08a861fc.tar.gz",
+      "hash": "1g4ljjkv3kz9q15dywy1f0cc2cam2281qx45krxgh991q715r4gz",
+      "frozen": true
+    }
+  },
+  "version": 5
+}

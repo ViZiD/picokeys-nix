@@ -1,8 +1,8 @@
 {
   lib,
   stdenvNoCC,
-  fetchFromGitHub,
   callPackage,
+  sources,
 }:
 lib.makeOverridable (
   {
@@ -10,19 +10,14 @@ lib.makeOverridable (
     generateOtpFile ? false,
   }:
   let
-    tinycbor = callPackage ./tinycbor.nix { };
+    tinycbor = callPackage ./tinycbor.nix { inherit sources; };
     mbedtls = callPackage ./mbedtls.nix { } { inherit eddsaSupport; };
   in
   stdenvNoCC.mkDerivation {
     pname = "pico-keys-sdk";
-    version = "unstable-2025-04-06";
+    version = sources.pico-keys-sdk.revision;
 
-    src = fetchFromGitHub {
-      owner = "polhenarejos";
-      repo = "pico-keys-sdk";
-      rev = "580b0acffa8e685caee4508fb656b78247064248";
-      hash = "sha256-uzOeX5EwZ0iQ53zs6VU+PukyTWcEG4HBqWPF8JqDG74=";
-    };
+    src = sources.pico-keys-sdk;
 
     prePatch = lib.optionalString generateOtpFile ''
       sed -i -e '/pico_hash_binary(''${CMAKE_PROJECT_NAME})/a\

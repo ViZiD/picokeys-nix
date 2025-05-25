@@ -35,6 +35,11 @@
             usbVid = "0xFEFF";
             usbPid = "0xFCFD";
           };
+          pico-fido2 = picopkgs.pico-fido2.override {
+            picoBoard = "waveshare_rp2350_one";
+            usbVid = "0xFEFF";
+            usbPid = "0xFCFD";
+          };
           # if you need eddsa support
           pico-openpgp-eddsa = picopkgs.pico-openpgp.override {
             picoBoard = "waveshare_rp2350_one";
@@ -47,6 +52,11 @@
             eddsaSupport = true;
           };
           pico-hsm-eddsa = picopkgs.pico-hsm.override {
+            picoBoard = "waveshare_rp2350_one";
+            vidPid = "Yubikey5";
+            eddsaSupport = true;
+          };
+          pico-fido2-eddsa = picopkgs.pico-fido2.override {
             picoBoard = "waveshare_rp2350_one";
             vidPid = "Yubikey5";
             eddsaSupport = true;
@@ -76,10 +86,34 @@
             secureBootKey = "${./path/key.pem}";
             generateOtpFile = true;
           };
+          pico-fido2-signed = picopkgs.pico-fido2.override {
+            picoBoard = "waveshare_rp2350_one";
+            usbVid = "0xFEFF";
+            usbPid = "0xFCFD";
+            secureBootKey = "${./path/key.pem}";
+            generateOtpFile = true;
+          };
           pico-nuke-signed = picopkgs.pico-nuke.override {
             picoBoard = "waveshare_rp2350_one";
             secureBootKey = "${./path/key.pem}";
             generateOtpFile = true;
+          };
+
+          # latest from master
+          pico-openpgp-latest = picopkgs.pico-openpgp-nightly.override {
+            picoBoard = "waveshare_rp2350_one";
+            usbVid = "0xFEFF";
+            usbPid = "0xFCFD";
+          };
+          pico-fido-latest = picopkgs.pico-fido-nightly.override {
+            picoBoard = "waveshare_rp2350_one";
+            usbVid = "0xFEFF";
+            usbPid = "0xFCFD";
+          };
+          pico-hsm-latest = picopkgs.pico-hsm-nightly.override {
+            picoBoard = "waveshare_rp2350_one";
+            usbVid = "0xFEFF";
+            usbPid = "0xFCFD";
           };
         };
       }

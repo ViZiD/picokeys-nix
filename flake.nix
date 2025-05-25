@@ -13,11 +13,16 @@
       legacyPackages = forAllSystems (
         system:
         import ./default.nix {
-          pkgs = import nixpkgs { inherit system; };
+          inherit nixpkgs system;
         }
       );
       packages = forAllSystems (
         system: nixpkgs.lib.filterAttrs (_: v: nixpkgs.lib.isDerivation v) self.legacyPackages.${system}
       );
+      devShells = forAllSystems (system: {
+        default = import ./shell.nix {
+          pkgs = nixpkgs.legacyPackages.${system};
+        };
+      });
     };
 }

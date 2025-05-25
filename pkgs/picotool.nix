@@ -1,24 +1,21 @@
 {
   lib,
   stdenv,
-  fetchFromGitHub,
   cmake,
   pkg-config,
   libusb1,
   pico-sdk,
   mbedtls_2,
+
+  sources,
 }:
 
 stdenv.mkDerivation rec {
   pname = "picotool";
-  version = "2.1.1";
 
-  src = fetchFromGitHub {
-    owner = "raspberrypi";
-    repo = "picotool";
-    rev = version;
-    hash = "sha256-WA17FXSUGylzUcbvzgAGCeds+XeuSvDlgFBJD10ERVY=";
-  };
+  src = sources.picotool;
+
+  version = (lib.mkSourceVersion src false);
 
   postPatch = ''
     # necessary for signing/hashing support. our pico-sdk does not come with
