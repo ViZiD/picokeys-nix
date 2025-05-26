@@ -10,12 +10,12 @@ lib.makeOverridable (
     generateOtpFile ? false,
   }:
   let
-    tinycbor = callPackage ./tinycbor.nix { inherit sources; };
     mbedtls = callPackage ./mbedtls.nix { } { inherit eddsaSupport; };
+    tinycbor = callPackage ./tinycbor.nix { inherit sources lib; };
   in
   stdenvNoCC.mkDerivation {
     pname = "pico-keys-sdk";
-    version = sources.pico-keys-sdk.revision;
+    version = (lib.mkSourceVersion sources.pico-keys-sdk true);
 
     src = sources.pico-keys-sdk;
 

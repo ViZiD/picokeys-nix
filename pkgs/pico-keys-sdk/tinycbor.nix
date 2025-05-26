@@ -6,7 +6,7 @@
 
 stdenvNoCC.mkDerivation {
   pname = "tinycbor";
-  version = sources.tinycbor.revision;
+  version = (lib.mkSourceVersion sources.tinycbor true);
 
   src = sources.tinycbor;
 

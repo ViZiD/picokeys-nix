@@ -16,7 +16,7 @@ let
     inherit sources lib;
   };
   picotool = pkgs.callPackage ./pkgs/picotool.nix { inherit pico-sdk sources lib; };
-  pico-keys-sdk = pkgs.callPackage ./pkgs/pico-keys-sdk/default.nix { inherit sources; };
+  pico-keys-sdk = pkgs.callPackage ./pkgs/pico-keys-sdk/default.nix { inherit sources lib; };
 
   callPkgWithSdk = pkgs.lib.callPackageWith (
     pkgs
