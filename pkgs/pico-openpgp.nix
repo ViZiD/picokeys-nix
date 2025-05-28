@@ -1,5 +1,4 @@
 {
-
   picoBoard ? "waveshare_rp2040_one",
   usbVid ? null,
   usbPid ? null,
