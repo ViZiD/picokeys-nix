@@ -1,7 +1,5 @@
 {
-  system ? builtins.currentSystem,
-  source ? import ./npins,
-  pkgs ? source.nixpkgs { inherit system; },
+  pkgs ? import (import ./npins).nixpkgs { },
 }:
 
 pkgs.mkShell {

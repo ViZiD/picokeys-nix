@@ -10,7 +10,7 @@
 # which this is possible.
 
 {
-  pkgs ? import <nixpkgs> { },
+  pkgs ? import (import ./npins).nixpkgs { },
 }:
 
 with builtins;
