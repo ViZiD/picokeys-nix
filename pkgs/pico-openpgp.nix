@@ -7,7 +7,7 @@
   eddsaSupport ? false,
   secureBootKey ? null,
   generateOtpFile ? false,
-  nightly ? false,
+  latest ? false,
 
   lib,
   stdenv,
@@ -21,10 +21,10 @@
   sources,
 }:
 stdenv.mkDerivation rec {
-  pname = "pico-openpgp${lib.optionalString eddsaSupport "-eddsa"}${lib.optionalString nightly "-nightly"}";
+  pname = "pico-openpgp${lib.optionalString eddsaSupport "-eddsa"}${lib.optionalString latest "-latest"}";
 
-  src = if nightly then sources.pico-openpgp-latest else sources.pico-openpgp;
-  version = (lib.mkSourceVersion src nightly);
+  src = if latest then sources.pico-openpgp-latest else sources.pico-openpgp;
+  version = (lib.mkSourceVersion src latest);
 
   nativeBuildInputs = [
     cmake

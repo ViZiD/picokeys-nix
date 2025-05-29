@@ -2,7 +2,7 @@
   picoBoard ? "waveshare_rp2040_one",
   secureBootKey ? null,
   generateOtpFile ? false,
-  nightly ? false,
+  latest ? false,
 
   lib,
   stdenv,
@@ -16,10 +16,10 @@
 }:
 
 stdenv.mkDerivation rec {
-  pname = "pico-nuke${lib.optionalString nightly "-nightly"}";
+  pname = "pico-nuke${lib.optionalString latest "-latest"}";
 
-  src = if nightly then sources.pico-nuke-latest else sources.pico-nuke;
-  version = (lib.mkSourceVersion src nightly);
+  src = if latest then sources.pico-nuke-latest else sources.pico-nuke;
+  version = (lib.mkSourceVersion src latest);
 
   prePatch = lib.optionalString generateOtpFile ''
     sed -i -e '/pico_hash_binary(''${CMAKE_PROJECT_NAME})/a\

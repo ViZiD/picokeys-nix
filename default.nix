@@ -26,10 +26,10 @@ let
   pico-keys-sdk = callPackage ./pkgs/pico-keys-sdk/default.nix { };
 
   pico-hsm-packages = callPackage ./pkgs/pico-hsm-packages.nix { };
-  pico-hsm-packages-nightly = callPackage ./pkgs/pico-hsm-packages.nix { nightly = true; };
+  pico-hsm-packages-latest = callPackage ./pkgs/pico-hsm-packages.nix { latest = true; };
 
   pico-fido-packages = callPackage ./pkgs/pico-fido-packages.nix { };
-  pico-fido-packages-nightly = callPackage ./pkgs/pico-fido-packages.nix { nightly = true; };
+  pico-fido-packages-latest = callPackage ./pkgs/pico-fido-packages.nix { latest = true; };
 in
 rec {
   inherit picotool;
@@ -40,7 +40,7 @@ rec {
   pypicohsm = callPackage ./pkgs/pypicohsm.nix { inherit pycvc; };
 
   pico-openpgp = callPackage ./pkgs/pico-openpgp.nix { };
-  pico-openpgp-nightly = callPackage ./pkgs/pico-openpgp.nix { nightly = true; };
+  pico-openpgp-latest = callPackage ./pkgs/pico-openpgp.nix { latest = true; };
 
   pico-fido2 = callPackage ./pkgs/pico-fido2.nix { };
 
@@ -49,17 +49,17 @@ rec {
     inherit pycvc pypicohsm;
   };
 
-  pico-hsm-nightly = callPackage pico-hsm-packages-nightly.pico-hsm { };
-  pico-hsm-tool-nightly = callPackage (pico-hsm-packages-nightly.pico-hsm-tool) {
+  pico-hsm-latest = callPackage pico-hsm-packages-latest.pico-hsm { };
+  pico-hsm-tool-latest = callPackage (pico-hsm-packages-latest.pico-hsm-tool) {
     inherit pycvc pypicohsm;
   };
 
   pico-fido = callPackage pico-fido-packages.pico-fido { };
   pico-fido-tool = pico-fido-packages.pico-fido-tool;
 
-  pico-fido-nightly = callPackage pico-fido-packages-nightly.pico-fido { };
-  pico-fido-tool-nightly = pico-fido-packages-nightly.pico-fido-tool;
+  pico-fido-latest = callPackage pico-fido-packages-latest.pico-fido { };
+  pico-fido-tool-latest = pico-fido-packages-latest.pico-fido-tool;
 
   pico-nuke = callPackage ./pkgs/pico-nuke.nix { };
-  pico-nuke-nightly = callPackage ./pkgs/pico-nuke.nix { nightly = true; };
+  pico-nuke-latest = callPackage ./pkgs/pico-nuke.nix { latest = true; };
 }

@@ -11,7 +11,7 @@ lib.makeOverridable (
   }:
   let
     mbedtls = callPackage ./mbedtls.nix { } { inherit eddsaSupport; };
-    tinycbor = callPackage ./tinycbor.nix { inherit sources lib; };
+    tinycbor = callPackage ./tinycbor.nix { };
   in
   stdenvNoCC.mkDerivation {
     pname = "pico-keys-sdk";

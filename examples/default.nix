@@ -91,17 +91,17 @@ in
   };
 
   # latest from master
-  pico-openpgp-latest = picopkgs.pico-openpgp-nightly.override {
+  pico-openpgp-latest = picopkgs.pico-openpgp-latest.override {
     picoBoard = "waveshare_rp2350_one";
     usbVid = "0xFEFF";
     usbPid = "0xFCFD";
   };
-  pico-fido-latest = picopkgs.pico-fido-nightly.override {
+  pico-fido-latest = picopkgs.pico-fido-latest.override {
     picoBoard = "waveshare_rp2350_one";
     usbVid = "0xFEFF";
     usbPid = "0xFCFD";
   };
-  pico-hsm-latest = picopkgs.pico-hsm-nightly.override {
+  pico-hsm-latest = picopkgs.pico-hsm-latest.override {
     picoBoard = "waveshare_rp2350_one";
     usbVid = "0xFEFF";
     usbPid = "0xFCFD";

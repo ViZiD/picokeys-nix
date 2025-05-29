@@ -9,11 +9,11 @@
 
   pico-keys-sdk,
   sources,
-  nightly ? false,
+  latest ? false,
 }:
 let
-  src = if nightly then sources.pico-fido-latest else sources.pico-fido;
-  version = (lib.mkSourceVersion src nightly);
+  src = if latest then sources.pico-fido-latest else sources.pico-fido;
+  version = (lib.mkSourceVersion src latest);
 
   pico-fido =
     {
@@ -27,7 +27,7 @@ let
       generateOtpFile ? false,
     }:
     stdenv.mkDerivation {
-      pname = "pico-fido${lib.optionalString eddsaSupport "-eddsa"}${lib.optionalString nightly "-nightly"}";
+      pname = "pico-fido${lib.optionalString eddsaSupport "-eddsa"}${lib.optionalString latest "-latest"}";
 
       inherit src version;
 

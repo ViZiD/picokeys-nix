@@ -10,12 +10,12 @@
 
   pico-keys-sdk,
   sources,
-  nightly ? false,
+  latest ? false,
 }:
 
 let
-  src = if nightly then sources.pico-hsm-latest else sources.pico-hsm;
-  version = (lib.mkSourceVersion src nightly);
+  src = if latest then sources.pico-hsm-latest else sources.pico-hsm;
+  version = (lib.mkSourceVersion src latest);
 
   pico-hsm =
     {
@@ -29,7 +29,7 @@ let
       generateOtpFile ? false,
     }:
     stdenv.mkDerivation {
-      pname = "pico-hsm${lib.optionalString eddsaSupport "-eddsa"}${lib.optionalString nightly "-nightly"}";
+      pname = "pico-hsm${lib.optionalString eddsaSupport "-eddsa"}${lib.optionalString latest "-latest"}";
       inherit src version;
 
       nativeBuildInputs = [

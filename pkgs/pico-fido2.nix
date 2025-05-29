@@ -7,7 +7,7 @@
   eddsaSupport ? false,
   secureBootKey ? null,
   generateOtpFile ? false,
-  nightly ? true,
+  latest ? true,
 
   lib,
   stdenv,
@@ -21,10 +21,10 @@
   sources,
 }:
 stdenv.mkDerivation rec {
-  pname = "pico_fido2${lib.optionalString eddsaSupport "-eddsa"}${lib.optionalString nightly "-nightly"}";
+  pname = "pico_fido2${lib.optionalString eddsaSupport "-eddsa"}${lib.optionalString latest "-latest"}";
 
-  src = if nightly then sources.pico-fido2-latest else sources.pico-fido2-latest; # FIXME: wait for releases
-  version = (lib.mkSourceVersion src nightly);
+  src = if latest then sources.pico-fido2-latest else sources.pico-fido2-latest; # FIXME: wait for releases
+  version = (lib.mkSourceVersion src latest);
 
   nativeBuildInputs = [
     cmake
