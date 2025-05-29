@@ -16,23 +16,30 @@ pkgs.mkShell {
           npins freeze nixpkgs
         '';
       };
-      update-pico-packages = pkgs.writeShellApplication {
-        name = "update-pico-packages";
+      update-pico-latest = pkgs.writeShellApplication {
+        name = "update-pico-latest";
         runtimeInputs = with pkgs; [
           npins
         ];
         text = ''
-          npins update pico-fido pico-fido-latest \
-          pico-fido2-latest pico-hsm  \
-          pico-hsm-latest pico-nuke \
-          pico-nuke-latest pico-openpgp \
-          pico-openpgp-latest
+          npins update pico-fido-latest pico-fido2-latest pico-keys-sdk \
+          pico-hsm-latest pico-nuke-latest pico-openpgp-latest
+        '';
+      };
+      update-pico = pkgs.writeShellApplication {
+        name = "update-pico";
+        runtimeInputs = with pkgs; [
+          npins
+        ];
+        text = ''
+          npins update pico-fido pico-hsm pico-nuke pico-openpgp
         '';
       };
     in
     [
       pkgs.npins
       update-nixpkgs
-      update-pico-packages
+      update-pico-latest
+      update-pico
     ];
 }
