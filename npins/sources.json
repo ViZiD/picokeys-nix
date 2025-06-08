@@ -39,9 +39,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "93523faf025dd147e7094508de3b98fe1792c811",
-      "url": "https://github.com/polhenarejos/pico-fido/archive/93523faf025dd147e7094508de3b98fe1792c811.tar.gz",
-      "hash": "0d6kqpvpszjv24sj8hrixqp3swdyv89knc7rlgialcc2mfcnkp8g"
+      "revision": "b4d9e8b69344ae2080a88641aedd6dcd5ea8bd06",
+      "url": "https://github.com/polhenarejos/pico-fido/archive/b4d9e8b69344ae2080a88641aedd6dcd5ea8bd06.tar.gz",
+      "hash": "0lszca2y64gy3gl3i9237r2dlcxwy8ibnlrp11m1p5wbym4lkldm"
     },
     "pico-fido2-latest": {
       "type": "Git",
@@ -94,9 +94,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "da3a7f25d0a7c5718d0288b2c3d369b9abee6049",
-      "url": "https://github.com/polhenarejos/pico-keys-sdk/archive/da3a7f25d0a7c5718d0288b2c3d369b9abee6049.tar.gz",
-      "hash": "1nxg8r9xzc4hfh29kdx11jm0k73rjqsvj8f8xzf0b8l22jy77g4k"
+      "revision": "f01aca551893efa27137a9907289fa5bd442cfaa",
+      "url": "https://github.com/polhenarejos/pico-keys-sdk/archive/f01aca551893efa27137a9907289fa5bd442cfaa.tar.gz",
+      "hash": "0q5b4wazzw8yx9h3dz33fgdlm2ginck23z69xrci742adf0inf9x"
     },
     "pico-nuke": {
       "type": "GitRelease",
@@ -152,9 +152,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "1a24a9ed1bdadd64a572fa3e4cc06fc7b4aba66d",
-      "url": "https://github.com/polhenarejos/pico-openpgp/archive/1a24a9ed1bdadd64a572fa3e4cc06fc7b4aba66d.tar.gz",
-      "hash": "00y2h8jphi6anv0cazpyyhslx78rll66jd93dhxh938xx6xsgc12"
+      "revision": "f2fe6dd5c2928fbdf9a7f46b5a06151ea4cef071",
+      "url": "https://github.com/polhenarejos/pico-openpgp/archive/f2fe6dd5c2928fbdf9a7f46b5a06151ea4cef071.tar.gz",
+      "hash": "0gqlwjysr7id3bqpmkwb50z8ajzj94l1lg132w7bsaix64nr6zh6"
     },
     "pico-sdk": {
       "type": "GitRelease",
