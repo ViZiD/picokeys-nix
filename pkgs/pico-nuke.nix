@@ -61,8 +61,8 @@ stdenv.mkDerivation (
 
     installPhase = ''
       runHook preInstall
-      install -D ${final.pname}.uf2 "$out/${romName}.uf2"
-      cp otp.json $out
+      find . -name "*.uf2" -type f -exec install -DT "{}" "$out/${romName}.uf2" \; -quit
+      ${lib.optionalString (secureBootKey != null) "install otp.json $out"}
       runHook postInstall        
     '';
 
