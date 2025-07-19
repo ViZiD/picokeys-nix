@@ -1,43 +1,46 @@
 {
   lib,
   fetchFromGitHub,
-  python3,
+  python3Packages,
   pycvc,
+  ...
 }:
-python3.pkgs.buildPythonPackage rec {
-  pname = "pypicohsm";
-  version = "1.4";
-  pyproject = true;
+python3Packages.buildPythonPackage (
+  lib.fix (final: {
+    pname = "pypicohsm";
+    version = "1.7";
+    pyproject = true;
 
-  src = fetchFromGitHub {
-    owner = "polhenarejos";
-    repo = "pypicohsm";
-    rev = "v${version}";
-    hash = "sha256-qWJH5CYtNYgWzYXB1vo4VoxilqFkJ4yGrVvTgBup5k0=";
-  };
+    src = fetchFromGitHub {
+      owner = "polhenarejos";
+      repo = "pypicohsm";
+      rev = "v${final.version}";
+      hash = "sha256-4Ejsn7MR6AhRygTPFh7qIf+oc0zlNH4DD8aTI8tlhVo=";
+    };
 
-  build-system = with python3.pkgs; [
-    setuptools
-  ];
+    build-system = with python3Packages; [
+      setuptools
+    ];
 
-  dependencies = with python3.pkgs; [
-    cryptography
-    base58
-    pyusb
-    pycvc
-    pyscard
-  ];
+    dependencies = with python3Packages; [
+      cryptography
+      base58
+      pyusb
+      pycvc
+      pyscard
+    ];
 
-  doCheck = false;
+    doCheck = false;
 
-  pythonImportsCheck = [
-    "picohsm"
-  ];
+    pythonImportsCheck = [
+      "picohsm"
+    ];
 
-  meta = {
-    description = "Pico HSM client for Python";
-    homepage = "https://github.com/polhenarejos/pypicohsm";
-    license = lib.licenses.gpl3Only;
-    maintainers = with lib.maintainers; [ vizid ];
-  };
-}
+    meta = {
+      description = "Pico HSM client for Python";
+      homepage = "https://github.com/polhenarejos/pypicohsm";
+      license = lib.licenses.gpl3Only;
+      maintainers = with lib.maintainers; [ vizid ];
+    };
+  })
+)

@@ -73,14 +73,14 @@ stdenv.mkDerivation (
     };
   in
   {
-    pname = "pico-openpgp";
-    version = "3.6";
+    pname = "pico-fido";
+    version = "6.6";
 
     src = fetchFromGitHub {
       owner = "polhenarejos";
       repo = final.pname;
       tag = "v${final.version}";
-      hash = "sha256-za3hymEurUQarSvaD9DrYnhsFUhe8G2p+LONN/ag260=";
+      hash = "sha256-Fp3JMzN8Y5O25ldtAC9AvTaoLOX9RoUYXD+5Fk1Hp5I=";
     };
 
     nativeBuildInputs = [
@@ -109,7 +109,7 @@ stdenv.mkDerivation (
 
     patchPhase = ''
       runHook prePatch
-      cp --no-preserve=mode -r "${pico-keys-sdk-final}/share/pico-keys-sdk/." pico-keys-sdk
+      cp --no-preserve=mode -r "${pico-keys-sdk-final}/share/pico-keys-sdk" .
       sed -i -e '/pico_hash_binary(''${CMAKE_PROJECT_NAME})/a\
       pico_set_otp_key_output_file(''${CMAKE_PROJECT_NAME} otp.json)' ./pico-keys-sdk/pico_keys_sdk_import.cmake
       runHook postPatch

@@ -73,14 +73,14 @@ stdenv.mkDerivation (
     };
   in
   {
-    pname = "pico-openpgp";
-    version = "3.6";
+    pname = "pico-hsm";
+    version = "5.6";
 
     src = fetchFromGitHub {
       owner = "polhenarejos";
       repo = final.pname;
       tag = "v${final.version}";
-      hash = "sha256-za3hymEurUQarSvaD9DrYnhsFUhe8G2p+LONN/ag260=";
+      hash = "sha256-mCpNzFlj4mJNJ01dlBDIrSXI5fCPSF+YgPXnesq3XlY=";
     };
 
     nativeBuildInputs = [
