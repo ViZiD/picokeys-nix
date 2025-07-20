@@ -139,9 +139,7 @@ stdenv.mkDerivation (
     installPhase = ''
       runHook preInstall
       find . -name "*.uf2" -type f -exec install -DT "{}" "$out/${romName}.uf2" \; -quit
-      ${lib.optionalString (
-        secureBootKey != null && picoBoard == "waveshare_rp2350_one"
-      ) "install otp.json $out"}
+      ${lib.optionalString (secureBootKey != null) "install otp.json $out"}
       runHook postInstall        
     '';
 
