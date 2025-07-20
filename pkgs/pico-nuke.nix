@@ -54,15 +54,9 @@ stdenv.mkDerivation (
       (lib.cmakeFeature "PICO_BOARD" picoBoard)
     ] ++ lib.optional (secureBootKey != null) (lib.cmakeFeature "SECURE_BOOT_PKEY" secureBootKey);
 
-    prePatch = ''
-      sed -i -e '/pico_hash_binary(''${CMAKE_PROJECT_NAME})/a\
-      pico_set_otp_key_output_file(''${CMAKE_PROJECT_NAME} otp.json)' CMakeLists.txt
-    '';
-
     installPhase = ''
       runHook preInstall
       find . -name "*.uf2" -type f -exec install -DT "{}" "$out/${romName}.uf2" \; -quit
-      ${lib.optionalString (secureBootKey != null) "install otp.json $out"}
       runHook postInstall        
     '';
 

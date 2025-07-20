@@ -109,19 +109,28 @@ stdenv.mkDerivation (
 
     patchPhase = ''
       runHook prePatch
+
       cp --no-preserve=mode -r "${pico-keys-sdk-final}/share/pico-keys-sdk" .
-      sed -i -e '/pico_hash_binary(''${CMAKE_PROJECT_NAME})/a\
-      pico_set_otp_key_output_file(''${CMAKE_PROJECT_NAME} otp.json)' ./pico-keys-sdk/pico_keys_sdk_import.cmake
+
+      cat >> ./pico-keys-sdk/pico_keys_sdk_import.cmake <<'EOF'
+      if (SECURE_BOOT_PKEY)
+        pico_set_otp_key_output_file(''${CMAKE_PROJECT_NAME} otp.json) 
+      endif()
+      EOF
+
       runHook postPatch
     '';
 
     installPhase = ''
       runHook preInstall
+
       find . -name "*.uf2" -type f -exec install -DT "{}" "$out/${romName}.uf2" \; -quit
-      ${lib.optionalString (secureBootKey != null) "install otp.json $out"}
+      ${lib.optionalString (
+        secureBootKey != null && picoBoard == "waveshare_rp2350_one"
+      ) "install otp.json $out"}
+
       runHook postInstall        
     '';
-
     meta = {
       description = "Transforming a Raspberry Pico into a FIDO Passkey";
       homepage = "https://github.com/polhenarejos/pico-fido";
