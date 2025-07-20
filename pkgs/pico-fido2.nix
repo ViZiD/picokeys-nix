@@ -24,14 +24,14 @@
   pico-fido-src ? fetchFromGitHub {
     owner = "polhenarejos";
     repo = "pico-fido";
-    rev = "9b75c5c175a8ed263cf1ac7b3e5ddc92d5d23e24";
-    hash = "sha256-D91pmauCMario/kwOxPavnE9Lu4xQyQ1EVt+fffF0zQ=";
+    rev = "9c28f72d176f94b5cc0fa0d7de5d7d38600631ff";
+    hash = "sha256-35oTI8oUAsHIpMH+nZ8bLERn9a2vNpWdj8WS7E5ECvM=";
   },
   pico-openpgp-src ? fetchFromGitHub {
     owner = "polhenarejos";
     repo = "pico-openpgp";
-    rev = "f34cdac00b4c0c6515686f0b34d13065d1c9bcbd";
-    hash = "sha256-o6IF9EhauVHLEUsLKKAVOgen6uzCj2B2Aau8opIvqag=";
+    rev = "41ae81067cb2ceb233144aa3d79cbce38d630967";
+    hash = "sha256-WyxMxKwFIHPYCwy79ScOiXnUC+kXzvevQNYoDvrbVYs=";
   },
 
   ...
@@ -45,10 +45,10 @@ let
         pico-keys-sdk-src = fetchFromGitHub {
           owner = "polhenarejos";
           repo = "pico-keys-sdk";
-          rev = "eb75ad4efa36703ed5dc7aaed1779e97497febb1";
-          hash = "sha256-bjSNEgOeGvV9MP6lb9bbxJGvdbq6gpgvkkD48wsZpck=";
+          rev = "113e720fcaaa6b9ca74d114bee1923bb2619ba3b";
+          hash = "sha256-KbE3rrJn9F0WwKztz+JRk+5GHP70wkqgUGdOfFkRDOM=";
         };
-        pico-keys-sdk-version = "7.0-unstable-2025-04-07";
+        pico-keys-sdk-version = "7.0-unstable-2025-06-22";
 
         mbedtls-src =
           if eddsaSupport then
@@ -86,13 +86,13 @@ stdenv.mkDerivation (
   in
   {
     pname = "pico-fido2";
-    version = "6.6";
+    version = "6.6-unstable-2025-07-09";
 
     src = fetchFromGitHub {
       owner = "polhenarejos";
       repo = final.pname;
-      tag = "v${final.version}";
-      hash = "sha256-za3hymEurUQarSvaD9DrYnhsFUhe8G2p+LONN/ag260=";
+      rev = "512d399fd02fb8827b347f9c70763f9fe1838414";
+      hash = "sha256-lJTnJg/nkoCJhuAm7zu9LFbyVhnkG1jyhLThrObApSg=";
     };
 
     nativeBuildInputs = [
