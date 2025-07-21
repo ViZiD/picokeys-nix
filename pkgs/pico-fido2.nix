@@ -55,7 +55,7 @@ let
             fetchFromGitHub {
               owner = "polhenarejos";
               repo = "mbedtls";
-              tag = "mbedtls-3.6-eddsa";
+              rev = "6320af56726247352af5a003ae77f465f5b4f1c7";
               hash = "sha256-wntpAcUE6EQlzxqM8jQCHMxBympGB/RTwFecYd+YPJk=";
             }
           else
