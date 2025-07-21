@@ -11,6 +11,8 @@
   python3,
   pico-sdk,
 
+  mbedtls-eddsa-src,
+
   picoBoard ? "waveshare_rp2040_one",
   usbVid ? null,
   usbPid ? null,
@@ -19,42 +21,8 @@
   eddsaSupport ? false,
   secureBootKey ? null,
 
-  pico-keys-sdk,
-  pico-keys-sdk-custom ? null,
-
   ...
 }:
-let
-  pico-keys-sdk-final =
-    if pico-keys-sdk-custom != null then
-      pico-keys-sdk-custom
-    else
-      pico-keys-sdk.override {
-        pico-keys-sdk-src = fetchFromGitHub {
-          owner = "polhenarejos";
-          repo = "pico-keys-sdk";
-          rev = "580b0acffa8e685caee4508fb656b78247064248";
-          hash = "sha256-uzOeX5EwZ0iQ53zs6VU+PukyTWcEG4HBqWPF8JqDG74=";
-        };
-        pico-keys-sdk-version = "7.0-unstable-2025-04-07";
-
-        mbedtls-src =
-          if eddsaSupport then
-            fetchFromGitHub {
-              owner = "polhenarejos";
-              repo = "mbedtls";
-              rev = "6320af56726247352af5a003ae77f465f5b4f1c7";
-              hash = "sha256-wntpAcUE6EQlzxqM8jQCHMxBympGB/RTwFecYd+YPJk=";
-            }
-          else
-            fetchFromGitHub {
-              owner = "Mbed-TLS";
-              repo = "mbedtls";
-              rev = "107ea89daaefb9867ea9121002fbbdf926780e98";
-              hash = "sha256-CigOAezxk79SSTX6Z7rDnt64qI6nkCD0piY9ZVNy+e0=";
-            };
-      };
-in
 stdenv.mkDerivation (
   final:
   let
@@ -79,8 +47,9 @@ stdenv.mkDerivation (
     src = fetchFromGitHub {
       owner = "polhenarejos";
       repo = final.pname;
-      tag = "v${final.version}";
+      rev = "v${final.version}";
       hash = "sha256-Fp3JMzN8Y5O25ldtAC9AvTaoLOX9RoUYXD+5Fk1Hp5I=";
+      fetchSubmodules = true;
     };
 
     nativeBuildInputs = [
@@ -110,8 +79,7 @@ stdenv.mkDerivation (
     patchPhase = ''
       runHook prePatch
 
-      cp --no-preserve=mode -r "${pico-keys-sdk-final}/share/pico-keys-sdk" .
-
+      ${lib.optionalString eddsaSupport "rm -rf ./pico-keys-sdk/mbedtls && cp --no-preserve=mode -r ${mbedtls-eddsa-src} ./pico-keys-sdk/mbedtls"}
       cat >> ./pico-keys-sdk/pico_keys_sdk_import.cmake <<'EOF'
       if (SECURE_BOOT_PKEY)
         pico_set_otp_key_output_file(''${CMAKE_PROJECT_NAME} otp.json) 

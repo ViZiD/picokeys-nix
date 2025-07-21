@@ -36,8 +36,9 @@ stdenv.mkDerivation (
     src = fetchFromGitHub {
       owner = "polhenarejos";
       repo = final.pname;
-      tag = "v${final.version}";
+      rev = "v${final.version}";
       hash = "sha256-qpNxdR7Pr7ch8XHp4mLA45/AJjMtElj/hVK0YXVngrA=";
+      fetchSubmodules = true;
     };
 
     nativeBuildInputs = [

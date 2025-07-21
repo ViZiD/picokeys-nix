@@ -11,6 +11,8 @@
   python3,
   pico-sdk,
 
+  mbedtls-eddsa-src,
+
   picoBoard ? "waveshare_rp2040_one",
   usbVid ? null,
   usbPid ? null,
@@ -19,54 +21,8 @@
   eddsaSupport ? false,
   secureBootKey ? null,
 
-  pico-keys-sdk,
-  pico-keys-sdk-custom ? null,
-  pico-fido-src ? fetchFromGitHub {
-    owner = "polhenarejos";
-    repo = "pico-fido";
-    rev = "9c28f72d176f94b5cc0fa0d7de5d7d38600631ff";
-    hash = "sha256-35oTI8oUAsHIpMH+nZ8bLERn9a2vNpWdj8WS7E5ECvM=";
-  },
-  pico-openpgp-src ? fetchFromGitHub {
-    owner = "polhenarejos";
-    repo = "pico-openpgp";
-    rev = "41ae81067cb2ceb233144aa3d79cbce38d630967";
-    hash = "sha256-WyxMxKwFIHPYCwy79ScOiXnUC+kXzvevQNYoDvrbVYs=";
-  },
-
   ...
 }:
-let
-  pico-keys-sdk-final =
-    if pico-keys-sdk-custom != null then
-      pico-keys-sdk-custom
-    else
-      pico-keys-sdk.override {
-        pico-keys-sdk-src = fetchFromGitHub {
-          owner = "polhenarejos";
-          repo = "pico-keys-sdk";
-          rev = "113e720fcaaa6b9ca74d114bee1923bb2619ba3b";
-          hash = "sha256-KbE3rrJn9F0WwKztz+JRk+5GHP70wkqgUGdOfFkRDOM=";
-        };
-        pico-keys-sdk-version = "7.0-unstable-2025-06-22";
-
-        mbedtls-src =
-          if eddsaSupport then
-            fetchFromGitHub {
-              owner = "polhenarejos";
-              repo = "mbedtls";
-              rev = "6320af56726247352af5a003ae77f465f5b4f1c7";
-              hash = "sha256-wntpAcUE6EQlzxqM8jQCHMxBympGB/RTwFecYd+YPJk=";
-            }
-          else
-            fetchFromGitHub {
-              owner = "Mbed-TLS";
-              repo = "mbedtls";
-              rev = "107ea89daaefb9867ea9121002fbbdf926780e98";
-              hash = "sha256-CigOAezxk79SSTX6Z7rDnt64qI6nkCD0piY9ZVNy+e0=";
-            };
-      };
-in
 stdenv.mkDerivation (
   final:
   let
@@ -92,7 +48,8 @@ stdenv.mkDerivation (
       owner = "polhenarejos";
       repo = final.pname;
       rev = "512d399fd02fb8827b347f9c70763f9fe1838414";
-      hash = "sha256-lJTnJg/nkoCJhuAm7zu9LFbyVhnkG1jyhLThrObApSg=";
+      hash = "sha256-UMOUmrjAAdJ9SbnR9aDcp36R2E0hbYf8u5XQO4JMgTM=";
+      fetchSubmodules = true;
     };
 
     nativeBuildInputs = [
@@ -122,11 +79,7 @@ stdenv.mkDerivation (
     patchPhase = ''
       runHook prePatch
 
-      cp --no-preserve=mode -r "${pico-keys-sdk-final}/share/pico-keys-sdk" .
-      rm -rf pico-fido pico-openpgp
-      cp --no-preserve=mode -r "${pico-fido-src}" pico-fido
-      cp --no-preserve=mode -r "${pico-openpgp-src}" pico-openpgp
-
+      ${lib.optionalString eddsaSupport "rm -rf ./pico-keys-sdk/mbedtls && cp --no-preserve=mode -r ${mbedtls-eddsa-src} ./pico-keys-sdk/mbedtls"}
       cat >> ./pico-keys-sdk/pico_keys_sdk_import.cmake <<'EOF'
       if (SECURE_BOOT_PKEY)
         pico_set_otp_key_output_file(''${CMAKE_PROJECT_NAME} otp.json) 
