@@ -1,38 +1,37 @@
 {
   lib,
-  python3,
   fetchFromGitHub,
+  python3Packages,
+  ...
 }:
-python3.pkgs.buildPythonPackage rec {
-  pname = "pycvc";
-  version = "1.5.0";
-  pyproject = true;
+python3Packages.buildPythonPackage (
+  lib.fix (final: {
+    pname = "pycvc";
+    version = "1.5.0";
+    pyproject = true;
 
-  src = fetchFromGitHub {
-    owner = "polhenarejos";
-    repo = "pycvc";
-    rev = "v${version}";
-    hash = "sha256-h0KwHS8V347GQQL0uLGwmQPKVb29PIwOTnvIEa5NTq8=";
-  };
+    src = fetchFromGitHub {
+      owner = "polhenarejos";
+      repo = "pycvc";
+      rev = "v${final.version}";
+      hash = "sha256-h0KwHS8V347GQQL0uLGwmQPKVb29PIwOTnvIEa5NTq8=";
+    };
 
-  build-system = with python3.pkgs; [
-    setuptools
-  ];
+    build-system = with python3Packages; [ setuptools ];
 
-  dependencies = with python3.pkgs; [
-    cryptography
-  ];
+    dependencies = with python3Packages; [ cryptography ];
 
-  doCheck = false;
+    doCheck = false;
 
-  pythonImportsCheck = [
-    "cvc"
-  ];
+    pythonImportsCheck = [
+      "cvc"
+    ];
 
-  meta = {
-    description = "Card Verifiable Certificates (CVC) tools for Python";
-    homepage = "https://github.com/polhenarejos/pycvc";
-    license = lib.licenses.gpl3Only;
-    maintainers = with lib.maintainers; [ vizid ];
-  };
-}
+    meta = {
+      description = "Card Verifiable Certificates (CVC) tools for Python";
+      homepage = "https://github.com/polhenarejos/pycvc";
+      license = lib.licenses.gpl3Only;
+      maintainers = with lib.maintainers; [ vizid ];
+    };
+  })
+)

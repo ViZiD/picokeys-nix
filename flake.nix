@@ -1,29 +1,50 @@
 {
   description = "Flake for build Pico HSM/OpenPGP/Fido firmware";
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-  outputs =
-    { self, nixpkgs }:
-    let
-      systems = [
-        "x86_64-linux"
-      ];
-      forAllSystems = f: nixpkgs.lib.genAttrs systems (system: f system);
-    in
-    {
-      legacyPackages = forAllSystems (
-        system:
-        import ./default.nix {
-          pkgs = import nixpkgs { inherit system; };
-        }
-      );
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
-      packages = forAllSystems (
-        system: nixpkgs.lib.filterAttrs (_: v: nixpkgs.lib.isDerivation v) self.legacyPackages.${system}
-      );
-      devShells = forAllSystems (system: {
-        default = import ./shell.nix {
-          pkgs = nixpkgs.legacyPackages.${system};
-        };
-      });
+    systems.url = "github:nix-systems/default-linux";
+
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
     };
+
+    pkgs-by-name-for-flake-parts.url = "github:drupol/pkgs-by-name-for-flake-parts";
+
+    git-hooks-nix = {
+      url = "github:cachix/git-hooks.nix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
+
+    flake-compat.url = "https://github.com/edolstra/flake-compat/archive/refs/tags/v1.1.0.tar.gz";
+  };
+
+  outputs =
+    inputs@{ flake-parts, ... }:
+    flake-parts.lib.mkFlake { inherit inputs; } (
+      { inputs, config, ... }:
+      {
+        imports = [
+          inputs.pkgs-by-name-for-flake-parts.flakeModule
+          ./devshells.nix
+          ./overlays.nix
+          ./lib.nix
+        ];
+
+        systems = import inputs.systems;
+
+        perSystem =
+          { system, ... }:
+          {
+            _module.args.pkgs = import inputs.nixpkgs {
+              inherit system;
+              overlays = [ config.flake.overlays.lib ];
+            };
+            pkgsDirectory = ./pkgs;
+          };
+      }
+    );
 }

@@ -41,14 +41,14 @@ stdenv.mkDerivation (
     };
   in
   {
-    pname = "pico-fido2";
-    version = "6.6-unstable-2025-07-09";
+    pname = "pico-hsm";
+    version = "5.6";
 
     src = fetchFromGitHub {
       owner = "polhenarejos";
       repo = final.pname;
-      rev = "512d399fd02fb8827b347f9c70763f9fe1838414";
-      hash = "sha256-UMOUmrjAAdJ9SbnR9aDcp36R2E0hbYf8u5XQO4JMgTM=";
+      rev = "v${final.version}";
+      hash = "sha256-hKKcBZvab++ghBsMndUxRl/fAjgv+vO2ZgwIdLTeDfg=";
       fetchSubmodules = true;
     };
 
@@ -91,8 +91,10 @@ stdenv.mkDerivation (
 
     installPhase = ''
       runHook preInstall
+
       find . -name "*.uf2" -type f -exec install -DT "{}" "$out/${romName}.uf2" \; -quit
       ${lib.optionalString (secureBootKey != null) "install otp.json $out"}
+
       runHook postInstall        
     '';
 
