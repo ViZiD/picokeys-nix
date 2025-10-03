@@ -4,12 +4,12 @@
 
   buildPicoRom,
 
-  picoBoard ? null,
+  picoBoard ? "waveshare_rp2040_one",
   usbVid ? null,
   usbPid ? null,
   vidPid ? null,
-  delayedBoot ? null,
-  eddsaSupport ? null,
+  delayedBoot ? false,
+  eddsaSupport ? false,
   secureBootKey ? null,
 
   ...
