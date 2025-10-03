@@ -17,13 +17,13 @@
 buildPicoRom (
   lib.fix (final: {
     pname = "pico-fido2";
-    version = "6.6-unstable-2025-07-09";
+    version = "6.6-unstable-2025-08-12";
 
     src = fetchFromGitHub {
       owner = "polhenarejos";
       repo = final.pname;
-      rev = "512d399fd02fb8827b347f9c70763f9fe1838414";
-      hash = "sha256-UMOUmrjAAdJ9SbnR9aDcp36R2E0hbYf8u5XQO4JMgTM=";
+      rev = "a296a388b915a1c522ea97cbab60ea7e5dc39f49";
+      hash = "sha256-ugGfk66Q8uVaUf7f7o8+ipDRo75ZWWCdAeZk/6bxMj4=";
       fetchSubmodules = true;
     };
 
