@@ -1,6 +1,3 @@
-![Build and populate cache](https://github.com/ViZiD/picokeys-nix/workflows/Build%20and%20populate%20cache/badge.svg)  
-[![Cachix Cache](https://img.shields.io/badge/cachix-picokeys_nix-blue.svg)](https://picokeys-nix.cachix.org)
-
 ## Flake for build Pico HSM/OpenPGP/Fido firmware
 
 [https://github.com/polhenarejos/pico-openpgp](https://github.com/polhenarejos/pico-openpgp)  
