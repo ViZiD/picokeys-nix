@@ -36,7 +36,7 @@
         };
         packages = nixpkgs.lib.filterAttrs (_: v: nixpkgs.lib.isDerivation v) self.legacyPackages.${system};
 
-        treefmt = treefmt-nix.lib.evalModule pkgs (_: {
+        treefmt = treefmt-nix.lib.evalModule pkgs {
           projectRootFile = "flake.nix";
           settings.global.excludes = [
             "*.md"
@@ -48,7 +48,7 @@
             deadnix.enable = true;
             statix.enable = true;
           };
-        });
+        };
 
         pre-commit-check = git-hooks.lib.${system}.run {
           src = ./.;
@@ -72,7 +72,7 @@
         };
         checks = {
           inherit pre-commit-check;
-          formatting = treefmt.config.build.check;
+          formatting = treefmt.config.build.check self;
         };
         formatter = treefmt.config.build.wrapper;
       }
