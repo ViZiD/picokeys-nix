@@ -30,6 +30,7 @@
         imports = [
           inputs.pkgs-by-name-for-flake-parts.flakeModule
           ./devshells.nix
+          ./devshells-develop.nix
           ./overlays.nix
           ./lib.nix
         ];
