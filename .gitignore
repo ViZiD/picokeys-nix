@@ -5,3 +5,6 @@ result
 
 # direnv stuff
 .direnv
+
+# secure boot keys
+**/*.pem
