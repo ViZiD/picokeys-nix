@@ -17,7 +17,7 @@
       ]
       ++ (lib.optional (vidPid != null) vidPid)
       ++ (lib.optional (usbVid != null && usbPid != null) (lib.toLower "${usbVid}_${usbPid}"))
-      ++ (lib.optional (eddsaSupport == true) "eddsa")
+      ++ (lib.optional eddsaSupport "eddsa")
       ++ (lib.singleton "v${version}")
     );
 }

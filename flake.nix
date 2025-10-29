@@ -1,7 +1,9 @@
 {
   description = "Flake for build Pico HSM/OpenPGP/Fido firmware";
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    # failing builds
+    # lock on picotool 2.1.1
+    nixpkgs.url = "github:NixOS/nixpkgs?ref=fa0ef8a6bb1651aa26c939aeb51b5f499e86b0ec";
 
     systems.url = "github:nix-systems/default-linux";
 
@@ -19,6 +21,11 @@
       };
     };
 
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     flake-compat.url = "https://github.com/edolstra/flake-compat/archive/refs/tags/v1.1.0.tar.gz";
   };
 
@@ -29,8 +36,7 @@
       {
         imports = [
           inputs.pkgs-by-name-for-flake-parts.flakeModule
-          ./devshells.nix
-          ./devshells-develop.nix
+          ./nix
           ./overlays.nix
           ./lib.nix
         ];
