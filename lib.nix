@@ -1,7 +1,4 @@
-_: prev:
-let
-  inherit (prev) lib;
-in
+{ lib, ... }:
 {
   flake.lib.genRomName =
     {
