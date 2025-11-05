@@ -335,7 +335,7 @@
           '';
         };
         main = with tui; ({
-           packages = packages ++ scripts.service-scripts;
+           packages = packages ++ scripts.service-scripts ++ scripts.picker-scripts;
          } // envvars.gum // envvars.aux // hook
         );
       };
