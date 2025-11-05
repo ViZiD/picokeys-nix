@@ -116,7 +116,7 @@
 
                 NIX_CONF_DIR=/var/empty \
                 # gum spin --title="Builting firmware..." -- \
-                nix --option standbox-paths $KEYDIRPATH \
+                nix --option sandbox-paths $KEYDIRPATH \
                  --extra-experimental-features 'nix-command flakes' \
                  $NIXPATHS $NIXCONF -L build --impure --expr \
                 '(builtins.getFlake "${self.outPath}").packages.$''\{builtins.currentSystem}.pico-fido2.override
@@ -138,7 +138,7 @@
 
         picker-scripts = [
           (writeShellScriptBin "generate-public-pem" ''
-            openssl ec -in $KEYPATH -pubout -out ${tui.envvars.aux.KEYDIRPATH}/public.pem
+            openssl ec -in $KEYPATH -pubout -out $KEYDIRPATH/public.pem
           '')
           (writeShellScriptBin "picotool-set-otp-keys" ''
             pico-fido-tool otp load ${tui.envvars.aux.KEYDIRPATH}/otp.json
@@ -330,8 +330,8 @@
             trap "clear" EXIT
             gum style --padding "1 2" --margin 1 \
              "Hello! Welcome to $DESCRIPTION environment.
-             To start wizard type 'wizard-start'!
-             To start picker type 'wizard-picker'"
+             To start wizard type 'source wizard-start'!
+             To start picker type 'source wizard-picker'"
           '';
         };
         main = with tui; ({
