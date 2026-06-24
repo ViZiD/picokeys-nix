@@ -1,14 +1,18 @@
-## Flake for build Pico HSM/OpenPGP/Fido firmware
+pico-keys is dead...
+see
+https://github.com/TheMaxMur/RS-Key
 
-[https://github.com/polhenarejos/pico-openpgp](https://github.com/polhenarejos/pico-openpgp)  
-[https://github.com/polhenarejos/pico-hsm](https://github.com/polhenarejos/pico-hsm)  
-[https://github.com/polhenarejos/pico-fido](https://github.com/polhenarejos/pico-fido)  
-[https://github.com/polhenarejos/pico-fido2](https://github.com/polhenarejos/pico-fido2)
+~~## Flake for build Pico HSM/OpenPGP/Fido firmware~~
 
-Currently only pico rp2040/2350 is supported.
+~~[https://github.com/polhenarejos/pico-openpgp](https://github.com/polhenarejos/pico-openpgp)~~
+~~[https://github.com/polhenarejos/pico-hsm](https://github.com/polhenarejos/pico-hsm)~~
+~~[https://github.com/polhenarejos/pico-fido](https://github.com/polhenarejos/pico-fido)~~
+~~[https://github.com/polhenarejos/pico-fido2](https://github.com/polhenarejos/pico-fido2)~~
 
-### TODO:
+~~Currently only pico rp2040/2350 is supported.~~
 
-1. make build env for esp32
+~~### TODO:~~
 
-thanks leo60228: https://github.com/leo60228/nix-rp2040
+~~1. make build env for esp32~~
+
+~~thanks leo60228: https://github.com/leo60228/nix-rp2040~~
